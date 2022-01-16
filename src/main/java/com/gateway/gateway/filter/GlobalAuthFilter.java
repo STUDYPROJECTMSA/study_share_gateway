@@ -1,7 +1,7 @@
 package com.gateway.gateway.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gateway.gateway.dto.Config;
+import com.gateway.gateway.dto.ConfigMessage;
 import com.gateway.gateway.validation.JwtValidationCheck;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class GlobalAuthFilter extends AbstractGatewayFilterFactory<Config> {
+public class GlobalAuthFilter extends AbstractGatewayFilterFactory<ConfigMessage> {
     private final ObjectMapper objectMapper;
     private final JwtValidationCheck jwtValidationCheck;
 
@@ -37,7 +37,7 @@ public class GlobalAuthFilter extends AbstractGatewayFilterFactory<Config> {
 
     //TODO: auth check 가 필요없는 로직인경우 뺀다.
     @Override
-    public GatewayFilter apply(Config config) {
+    public GatewayFilter apply(ConfigMessage configMessage) {
         return ((exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();

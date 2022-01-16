@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 
 @Data
-public class Config {
+public class ConfigMessage {
     private final String baseMessage;
     private boolean preLogger;
     private boolean postLogger;

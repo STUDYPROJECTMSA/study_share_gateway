@@ -40,6 +40,11 @@ eureka:
     service-url:
       defaultZone: http://eureka-server:8761/eureka
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: study
+    password: study12
   security:
     jwt:
       token:
@@ -73,5 +78,13 @@ spring:
             baseMessage: come to study-share gateway service
             preLogger: true
             postLogger: true
+
+      routes:
+        - id: innser-gateway-ms-instance
+          uri: lb://INNER-GATEWAY-SERVICE
+          predicates:
+            - Path=/**
+          filters:
+            - GlobalAuthFilter
 
 
